@@ -15,7 +15,6 @@ COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
 # Copy the nginx configuration file to the container
 COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN ls -la
 # Expose port 80
 EXPOSE 80
 EXPOSE 8080
