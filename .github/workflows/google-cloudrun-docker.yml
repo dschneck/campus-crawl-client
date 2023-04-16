@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 env:
-  PROJECT_ID: campus-crawl-web-api
+  PROJECT_ID: campus-crawler-web-api
   GAR_LOCATION: us-central1
   SERVICE: campus-crawl-client
   REGION: us-central1
