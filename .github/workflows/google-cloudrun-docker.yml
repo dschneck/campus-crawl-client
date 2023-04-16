@@ -7,7 +7,7 @@ on:
 env:
   PROJECT_ID: campus-crawl-web-api
   GAR_LOCATION: us-central1
-  SERVICE: campus-crawl-client-server
+  SERVICE: campus-crawl-client
   REGION: us-central1
 
 jobs:
