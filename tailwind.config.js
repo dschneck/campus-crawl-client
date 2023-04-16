@@ -5,8 +5,17 @@ module.exports = {
       './index.html'
   ],
   theme: {
-    extend: {},
-  },
-  plugins: [],
+    extend: {
+        fontFamily: {
+        'press-start': ['"Press Start 2P"', 'cursive'],
+      }
+    },
+         colors: {
+             'white': '#fbfffeff',
+             'chestnut': '#a53f2bff',
+             'xanthous': '#f3b40fff',
+             'black': '#020202ff'
+         }
+  }
 }
 
