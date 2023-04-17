@@ -4,9 +4,9 @@ type userInfo  = {
     university: string
 };
 
-interface regiserUserFunction
 function RegisterUserAsync( user: userInfo): string {
-    return user.email;
+    const first = user.university;
+    return first;
 }
 
-export type{ userInfo, RegisterUserAsync}
+export type { userInfo, RegisterUserAsync }
