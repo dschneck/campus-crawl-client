@@ -1,4 +1,5 @@
 import { createStore } from "solid-js/store";
+import { LoginUserAsync, CCLoginRequest} from "./CampusCrawlWebApiClient";
 
 type FormFields = {
     firstName: string,
@@ -15,8 +16,10 @@ const loginSubmit = (form: FormFields) => {
     email: form.email,
     password: form.password
   };
+
   // should be submitting your form to some backend service
   console.log(`submitting ${JSON.stringify(userToLogin)}`);
+  LoginUserAsync( userToLogin as CCLoginRequest);
 };
 const useForm = () => {
   const [form, setForm] = createStore<FormFields>({

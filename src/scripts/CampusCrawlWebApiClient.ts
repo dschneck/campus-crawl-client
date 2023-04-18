@@ -13,6 +13,10 @@ export interface userInfo
     university: string
 };
 
+export interface User extends userCredentials, userInfo
+{
+}
+
 export interface CCLoginRequest extends userCredentials
 {
 
@@ -21,11 +25,12 @@ export interface CCLoginRequest extends userCredentials
 interface IResponse
 {
     err: string
+    hasErr: boolean
 }
 
 export interface CCLoginResponse extends IResponse
 {
-    hasErr: boolean
+    data: string
 }
 
 export async function RegisterUserAsync(user: userInfo)
@@ -39,7 +44,8 @@ export async function LoginUserAsync(request: CCLoginRequest): Promise<CCLoginRe
     let ret : CCLoginResponse =
     {
         err: "Missing Response",
-        hasErr: true
+        hasErr: true,
+        data: ""
     };
 
     try
@@ -50,14 +56,8 @@ export async function LoginUserAsync(request: CCLoginRequest): Promise<CCLoginRe
                    body :JSON.stringify(request)
                });
 
-        const data : CCLoginResponse = await response.json();
-        console.log(data);
-
-         ret =
-         {
-            err: "",
-            hasErr: false
-         };
+        ret = JSON.parse(await response.json());
+        console.log(`received this from api ${ret}`);
 
     } catch(e)
     {

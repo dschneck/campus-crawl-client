@@ -7,6 +7,7 @@ const Login: Component = () => {
 
     const handleSubmit = (event: Event): void => {
         event.preventDefault();
+        console.log(form);
         loginSubmit(form);
     };
 
@@ -42,7 +43,8 @@ const Login: Component = () => {
             <div class="flex items-center justify-between">
                 <button
                 class="bg-white hover:bg-xanthous text-chestnut py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="button">
+                type="button"
+                onClick={handleSubmit}>
                     Sign In
                 </button>
                 <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
