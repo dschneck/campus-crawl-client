@@ -1,52 +1,58 @@
-import type { Component } from './solid-js';
-import { render } from "solid-js/web";
-import { For, createSignal } from "solid-js";
-import { createStore } from "solid-js/store";
+import { For, createSignal, Component } from "solid-js";
+import { userInfo, userCredentials, RegisterUserAsync, LoginUserAsync, CCLoginResponse } from "./scripts/CampusCrawlWebApiClient";
+import { useForm } from "./scripts/useForm"
 
 const Login: Component = () => {
-      let input;
-  let todoId = 0;
-  const [todos, setTodos] = createSignal([])
-  const addTodo = (text) => {
-    setTodos([...todos(), { id: ++todoId, text, completed: false }]);
-  }
-  const toggleTodo = (id) => {
-    setTodos(todos().map((todo) => (
-      todo.id !== id ? todo : { ...todo, completed: !todo.completed }
-    )));
-  }
-      return (
+    const { form, updateFormField, loginSubmit, clearField } = useForm();
+
+    const handleSubmit = (event: Event): void => {
+        event.preventDefault();
+        loginSubmit(form);
+    };
+
+    return (
     <>
-      <div class="grid grid-cols-1 justify-items-center bg-slate-100 p-8">
-        <input class="text-2xl" ref={input} />
-        <button
-          onClick={(e) => {
-            if (!input.value.trim()) return;
-            addTodo(input.value);
-            input.value = "";
-          }}
-        >
-          Add Todo
-        </button>
-      </div>
-      <For each={todos()}>
-        {(todo) => {
-          const { id, text } = todo;
-          console.log(`Creating ${text}`)
-          return <div>
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onchange={[toggleTodo, id]}
-            />
-            <span
-              style={{ "text-decoration": todo.completed ? "line-through" : "none"}}
-            >{text}</span>
-          </div>
-        }}
-      </For>
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="w-full max-w-xs">
+            <div class="mb-4">
+                <div class="md:w-1/3">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                        Email
+                    </label>
+                </div>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="email"
+                value={form.email}
+                onChange={updateFormField("email")}
+                />
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+                <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="password"
+                type="password"
+                value={form.password}
+                onChange={updateFormField("password")}
+                placeholder="******************"
+                />
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button
+                class="bg-white hover:bg-xanthous text-chestnut py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button">
+                    Sign In
+                </button>
+                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                Forgot Password?
+                </a>
+            </div>
+        </div>
+    </form>
     </>
-    );
+    )
 };
 
 export default Login;
