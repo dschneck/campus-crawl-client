@@ -50,7 +50,7 @@ export async function LoginUserAsync(request: CCLoginRequest): Promise<CCLoginRe
 
     try
     {
-        const response = await fetch(`${webApiBaseUrl}/login`,
+        const response = await fetch(`${webApiBaseUrl}/users/login`,
                {
                    method: 'POST',
                    body :JSON.stringify(request)
