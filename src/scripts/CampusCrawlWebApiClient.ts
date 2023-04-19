@@ -10,11 +10,12 @@ export interface userInfo
 {
     firstName: string,
     lastName: string,
-    university: string
+    universityId: string
 };
 
 export interface User extends userCredentials, userInfo
 {
+    id: string
 }
 
 export interface CCLoginRequest extends userCredentials

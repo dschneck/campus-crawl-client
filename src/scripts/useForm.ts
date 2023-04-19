@@ -21,6 +21,15 @@ const loginSubmit = async (form: FormFields) => {
   // should be submitting your form to some backend service
   console.log(`submitting ${JSON.stringify(userToLogin)}`);
   let userLoggedIn = await LoginUserAsync( userToLogin as CCLoginRequest);
+
+  if (userLoggedIn.hasErr)
+  {
+      alert(userLoggedIn.err);
+      return
+  }
+
+  console.log("valid login: " + userLoggedIn.data);
+
   setUser(JSON.parse(userLoggedIn.data) as User);
 };
 const useForm = () => {
