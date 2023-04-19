@@ -22,26 +22,48 @@ export interface CCLoginRequest extends userCredentials
 
 }
 
-interface IResponse
+interface Response
 {
-    err: string
-    hasErr: boolean
-}
-
-export interface CCLoginResponse extends IResponse
-{
+    err: string,
+    hasErr: boolean,
     data: string
 }
 
 export async function RegisterUserAsync(user: userInfo)
 {
-    const first = user.university;
-    return first;
+    let ret: Response =
+    {
+        err: "Missing Response",
+        hasErr: true,
+        data: ""
+    }
+
+    try
+    {
+        const response = await fetch(`${webApiBaseUrl}/users/register`,
+               {
+                    method: 'POST',
+                    headers: {
+                       'accept': 'text/plain',
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify(user)
+                });
+
+
+        ret = JSON.parse(await response.json());
+        console.log(`received from login api ${ret}`);
+    } catch(e)
+    {
+        console.error(e);
+    }
+
+    return ret;
 }
 
-export async function LoginUserAsync(request: CCLoginRequest): Promise<CCLoginResponse>
+export async function LoginUserAsync(request: CCLoginRequest): Promise<Response>
 {
-    let ret : CCLoginResponse =
+    let ret : Response =
     {
         err: "Missing Response",
         hasErr: true,
@@ -53,11 +75,15 @@ export async function LoginUserAsync(request: CCLoginRequest): Promise<CCLoginRe
         const response = await fetch(`${webApiBaseUrl}/users/login`,
                {
                    method: 'POST',
-                   body :JSON.stringify(request)
+                   headers: {
+                       'accept': 'text/plain',
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify(request)
                });
 
         ret = JSON.parse(await response.json());
-        console.log(`received this from api ${ret}`);
+        console.log(`received from login api ${ret}`);
 
     } catch(e)
     {

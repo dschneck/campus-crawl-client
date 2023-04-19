@@ -3,6 +3,7 @@ import { render } from 'solid-js/web';
 
 import './index.css';
 import App from './App';
+import Register from './Register';
 import Login from './Login';
 
 const root = document.getElementById('root');
@@ -13,4 +14,4 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
-render(() => <Login />, root!);
+render(() => <App />, root!);

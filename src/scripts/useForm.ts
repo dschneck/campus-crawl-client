@@ -1,5 +1,6 @@
 import { createStore } from "solid-js/store";
-import { LoginUserAsync, CCLoginRequest} from "./CampusCrawlWebApiClient";
+import { LoginUserAsync, CCLoginRequest, User} from "./CampusCrawlWebApiClient";
+import { setUser } from '../userState';
 
 type FormFields = {
     firstName: string,
@@ -8,7 +9,7 @@ type FormFields = {
     email: string,
 };
 
-const loginSubmit = (form: FormFields) => {
+const loginSubmit = async (form: FormFields) => {
   // here we can:
   // filter out unneeded data, e.g. the checkbox sameAsAddress
   // map fields, if needed, e.g. shipping_address
@@ -19,7 +20,8 @@ const loginSubmit = (form: FormFields) => {
 
   // should be submitting your form to some backend service
   console.log(`submitting ${JSON.stringify(userToLogin)}`);
-  LoginUserAsync( userToLogin as CCLoginRequest);
+  let userLoggedIn = await LoginUserAsync( userToLogin as CCLoginRequest);
+  setUser(JSON.parse(userLoggedIn.data) as User);
 };
 const useForm = () => {
   const [form, setForm] = createStore<FormFields>({

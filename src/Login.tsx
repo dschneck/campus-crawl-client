@@ -7,7 +7,6 @@ const Login: Component = () => {
 
     const handleSubmit = (event: Event): void => {
         event.preventDefault();
-        console.log(form);
         loginSubmit(form);
     };
 
@@ -36,7 +35,7 @@ const Login: Component = () => {
                 type="password"
                 value={form.password}
                 onChange={updateFormField("password")}
-                placeholder="******************"
+                placeholder="***********"
                 />
             </div>
 
