@@ -30,20 +30,6 @@ interface Response
     data?: string
 }
 
-interface University
-{
-    id: string,
-    name: string,
-    address: string,
-    description: string,
-    numberOfStudents: number
-}
-
-interface Universities
-{
-    elements: Array<University>
-}
-
 export async function getUniversities()
 {
     try
@@ -63,6 +49,51 @@ export async function getUniversities()
         return null;
     }
 }
+
+export interface RSO
+{
+    name: string,
+    description: string,
+    universityId: string,
+    id: string,
+    status: string
+}
+
+export async function CreateRsoAsync(rso: RSO)
+{
+    let ret: Response =
+    {
+        err: "",
+        hasErr: false
+    }
+
+    try
+    {
+        const response = await fetch(`${webApiBaseUrl}/rsos/create`,
+               {
+                   method: 'POST',
+                   headers: {
+                       'accept': 'text/plain',
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify(rso)
+               });
+
+         ret = await response.json();
+        console.log(`received from rsos/create  api ${JSON.stringify(ret)}`);
+    } catch(e)
+    {
+        console.error(e);
+        ret =
+        {
+            err: "Exception thrown",
+            hasErr: true,
+        }
+    }
+
+    return ret;
+}
+
 export async function RegisterUserAsync(user: User)
 {
     let ret: Response =
