@@ -92,8 +92,9 @@ return (
       </label>
       <div class="relative">
         <select
+            onChange={updateFormField("universityId")}
             class="block appearance-none w-full  border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-state">
+            id="grid-university">
           <For each={universities()}>{(university) =>
             <option value={`${university.id}`}>{`${university.name}`}</option>
           }
