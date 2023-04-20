@@ -53,10 +53,11 @@ export async function getUniversities()
                    method: 'GET',
                });
 
-        let x = JSON.stringify(await response.json());
+        let result = await response.json();
+        let x = JSON.stringify(result);
         console.log(`received from login api ${x}`);
 
-        return JSON.parse(x) as Universities;
+        return result.data;
     } catch(e)
     {
         return null;
