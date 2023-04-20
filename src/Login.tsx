@@ -13,7 +13,7 @@ const Login: Component = () => {
 
     return (
     <>
-    <form class=" mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form class="mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="w-full max-w-xs">
             <div class="mb-4">
                 <div class="md:w-1/3">

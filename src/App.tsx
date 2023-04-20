@@ -32,8 +32,10 @@ const App: Component = () => {
             </Switch>
         }>
         <Match when={user().id != 'empty'}>
-            <Logout />
-            <Events />
+            <div class="mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 grid grid-cols-1 divide-y-4 divide-slate-400">
+                <Events />
+                <Logout />
+            </div>
         </Match>
         </Switch>
     </div>
