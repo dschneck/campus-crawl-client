@@ -3,6 +3,8 @@ import { createSignal } from 'solid-js';
 
 import Register from './Register';
 import Login from './Login';
+import Events  from './Events';
+
 import { user, setUser } from './userState';
 
 const App: Component = () => {
@@ -10,6 +12,7 @@ const App: Component = () => {
 
     return (
     <div class="grid justify-center items-center">
+        <Switch fallback= {
         <Switch fallback=
                 {
                     <>
@@ -25,6 +28,11 @@ const App: Component = () => {
                     Already have an account?
                 </button>
             </Match>
+        </Switch>
+        }>
+        <Match when={user().id != 'empty'}>
+        <Events />
+        </Match>
         </Switch>
     </div>
     );
