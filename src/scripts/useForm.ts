@@ -28,7 +28,7 @@ const loginSubmit = async (form: FormFields) => {
       return
   }
 
-  console.log("valid login: " + userLoggedIn.data?.toString());
+  console.log(`valid login: ${JSON.stringify(userLoggedIn.data)}`);
 };
 const useForm = () => {
   const [form, setForm] = createStore<FormFields>({

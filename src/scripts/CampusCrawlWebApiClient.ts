@@ -83,7 +83,7 @@ export async function LoginUserAsync(request: CCLoginRequest): Promise<Response>
                });
 
          ret = await response.json();
-        console.log(`received from login api ${ret}`);
+        console.log(`received from login api ${JSON.stringify(ret)}`);
     } catch(e)
     {
         console.error(e);
