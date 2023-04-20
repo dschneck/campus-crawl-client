@@ -16,7 +16,8 @@ const registerSubmit = async (form: FormFields) => {
         lastName: form.lastName,
         password: form.password,
         email: form.email,
-        universityId: form.universityId
+        universityId: form.universityId,
+        id: ""
     }
 
     console.log(`registering ${JSON.stringify(userToRegister)}`);
