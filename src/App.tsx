@@ -6,6 +6,7 @@ import Login from './Login';
 import Events  from './Events';
 
 import { user, setUser } from './userState';
+import Logout from './Logout';
 
 const App: Component = () => {
     const [registerToggle, setRegisterToggle] = createSignal(true);
@@ -13,25 +14,26 @@ const App: Component = () => {
     return (
     <div class="grid justify-center items-center">
         <Switch fallback= {
-        <Switch fallback=
-                {
-                    <>
-                        <Login />
-                        <button class="object-none object-center" onClick={ () => setRegisterToggle(!registerToggle())}>
-                            Don't have an account?
-                        </button>
-                    </>
-                }>
-            <Match when={!registerToggle()}>
-                <Register />
-                <button class="object-none object-center" onClick={ () => setRegisterToggle(!registerToggle())}>
-                    Already have an account?
-                </button>
-            </Match>
-        </Switch>
+            <Switch fallback=
+                    {
+                        <>
+                            <Login />
+                            <button class="object-none object-center" onClick={ () => setRegisterToggle(!registerToggle())}>
+                                Don't have an account?
+                            </button>
+                        </>
+                    }>
+                <Match when={!registerToggle()}>
+                    <Register />
+                    <button class="object-none object-center" onClick={ () => setRegisterToggle(!registerToggle())}>
+                        Already have an account?
+                    </button>
+                </Match>
+            </Switch>
         }>
         <Match when={user().id != 'empty'}>
-        <Events />
+            <Logout />
+            <Events />
         </Match>
         </Switch>
     </div>

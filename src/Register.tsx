@@ -1,11 +1,11 @@
-import { For, createSignal, Component } from "solid-js";
+import { For, createSignal, Component, createResource } from "solid-js";
 import { createStore } from "solid-js/store";
-import { userInfo, userCredentials, RegisterUserAsync, LoginUserAsync, CCLoginResponse } from "./scripts/CampusCrawlWebApiClient";
+import { userInfo, userCredentials, getUniversities,  RegisterUserAsync, LoginUserAsync, CCLoginResponse } from "./scripts/CampusCrawlWebApiClient";
 import { useForm } from "./scripts/useForm"
 
 const Register : Component = () =>
 {
-    const [universities, setUniversites] = createSignal(["UCF", "UF", "V State"]);
+    const [universities] = createResource(getUniversities);
 
 return (
     <>
@@ -52,7 +52,7 @@ return (
       <div class="relative">
         <select class="block appearance-none w-full  border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
           <For each={universities()}>{(university) =>
-            <option>{`${university}`}</option>
+            <option>{`${university.name}`}</option>
           }
           </For>
         </select>

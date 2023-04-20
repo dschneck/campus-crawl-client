@@ -25,7 +25,7 @@ const loginSubmit = async (form: FormFields) => {
   if (userLoggedIn.hasErr)
   {
       alert(userLoggedIn.err);
-      return
+      return;
   }
 
   console.log(`valid login: ${JSON.stringify(userLoggedIn.data)}`);

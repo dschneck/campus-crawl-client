@@ -30,6 +30,24 @@ interface Response
     data?: string
 }
 
+export async function getUniversities()
+{
+    try
+    {
+        const response = await fetch(`${webApiBaseUrl}/universities`,
+               {
+                   method: 'GET',
+               });
+
+        let x = JSON.stringify(await response.json());
+        console.log(`received from login api ${x}`);
+
+        return JSON.parse(x);
+    } catch(e)
+    {
+        return null;
+    }
+}
 export async function RegisterUserAsync(user: userInfo)
 {
     let ret: Response =
