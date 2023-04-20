@@ -21,9 +21,12 @@ const Login: Component = () => {
                         Email
                     </label>
                 </div>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="email"
-                value={form.email}
-                onChange={updateFormField("email")}
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="email"
+                    type="text"
+                    placeholder="email"
+                    value={form.email}
+                    onChange={updateFormField("email")}
                 />
             </div>
 
