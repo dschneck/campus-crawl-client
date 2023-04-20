@@ -18,7 +18,8 @@ const createRsoSubmit = async (form: FormFields) => {
         description: form.rsoDescription,
         universityId: user().universityId,
         id: user().id,
-        status: "inactive"
+        status: "inactive",
+        university: {}
     }
 
     console.log(`creating rso ${JSON.stringify(rsoToCreate)}`);

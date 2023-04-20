@@ -56,7 +56,8 @@ export interface RSO
     description: string,
     universityId: string,
     id: string,
-    status: string
+    status: string,
+    university: {}
 }
 
 export async function CreateRsoAsync(rso: RSO)
