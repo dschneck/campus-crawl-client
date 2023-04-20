@@ -7,17 +7,12 @@ const Register : Component = () =>
 {
     const [universities] = createResource(getUniversities);
 
-    const { form, updateFormField, clearField, registerSubmit} = useForm();
+    const { form, updateFormField, registerSubmit} = useForm();
 
     const handleSubmit = (event: Event): void => {
         event.preventDefault();
 
         registerSubmit(form);
-     //   for (var key in form)
-      //  {
-       //     var value = form[key];
-        //    clearField(value);
-        //}
     };
 
 return (
@@ -80,7 +75,7 @@ return (
           type="password"
           placeholder="*********"
           value={form.password}
-          onChange={updateFormField("email")}
+          onChange={updateFormField("password")}
       />
     </div>
   </div>
@@ -106,7 +101,7 @@ return (
       </div>
     </div>
     <button
-        class="hover:bg-xanthous md:w-2/3 px-3 mb-6 md:mb-0 inline block bg-white rounded font-bold align-baseline "
+        class="hover:bg-xanthous md:w-2/3 px-3 mb-6 md:mb-0 inline block bg-white rounded font-bold align-baseline"
         onClick={handleSubmit}
         >
             Submit
