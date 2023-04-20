@@ -30,6 +30,20 @@ interface Response
     data?: string
 }
 
+interface University
+{
+    id: string,
+    name: string,
+    address: string,
+    description: string,
+    numberOfStudents: number
+}
+
+interface Universities
+{
+    elements: Array<University>
+}
+
 export async function getUniversities()
 {
     try
@@ -42,7 +56,7 @@ export async function getUniversities()
         let x = JSON.stringify(await response.json());
         console.log(`received from login api ${x}`);
 
-        return JSON.parse(x);
+        return JSON.parse(x) as Universities;
     } catch(e)
     {
         return null;
