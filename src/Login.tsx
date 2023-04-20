@@ -3,7 +3,7 @@ import { userInfo, userCredentials, RegisterUserAsync, LoginUserAsync, CCLoginRe
 import { useForm } from "./scripts/useForm"
 
 const Login: Component = () => {
-    const { form, updateFormField, loginSubmit, clearField } = useForm();
+    const { form, updateFormField, loginSubmit} = useForm();
 
     const handleSubmit = (event: Event): void => {
         event.preventDefault();

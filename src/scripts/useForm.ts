@@ -77,7 +77,7 @@ const useForm = () => {
       });
   };
 
-  return { form, loginSubmit, updateFormField, clearField };
+  return { form, loginSubmit, registerSubmit, updateFormField, clearField };
 };
 
 export { useForm };

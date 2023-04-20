@@ -6,8 +6,6 @@ const Logout : Component = () =>
 {
     return (
         <div>
-
-    <button class="hover:bg-xanthous md:w-2/3 px-3 mb-6 md:mb-0 inline block bg-white rounded font-bold align-baseline ">Submit</button>
             <button
                 onClick={() => setUser({ id: "empty" } as User)}
                 class="hover:bg-xanthous md:w-2/3 px-3 mb-6 md:mb-0 inline block bg-white rounded font-bold align-baseline ">
