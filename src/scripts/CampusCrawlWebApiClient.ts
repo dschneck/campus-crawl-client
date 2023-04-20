@@ -55,7 +55,7 @@ export async function getUniversities()
 
         let result = await response.json();
         let x = JSON.stringify(result);
-        console.log(`received from login api ${x}`);
+        console.log(`received from get universities api ${x}`);
 
         return result.data;
     } catch(e)
@@ -63,33 +63,36 @@ export async function getUniversities()
         return null;
     }
 }
-export async function RegisterUserAsync(user: userInfo)
+export async function RegisterUserAsync(user: User)
 {
     let ret: Response =
     {
-        err: "Missing Response",
-        hasErr: true,
-        data: ""
+        err: "",
+        hasErr: false
     }
 
     try
     {
         const response = await fetch(`${webApiBaseUrl}/users/register`,
                {
-                    method: 'POST',
-                    headers: {
+                   method: 'POST',
+                   headers: {
                        'accept': 'text/plain',
                        'Content-Type': 'application/json'
                    },
                    body: JSON.stringify(user)
-                });
+               });
 
-
-        ret = JSON.parse(await response.json());
-        console.log(`received from login api ${ret}`);
+         ret = await response.json();
+        console.log(`received from login api ${JSON.stringify(ret)}`);
     } catch(e)
     {
         console.error(e);
+        ret =
+        {
+            err: "Exception thrown",
+            hasErr: true,
+        }
     }
 
     return ret;

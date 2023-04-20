@@ -1,5 +1,5 @@
 import { createStore } from "solid-js/store";
-import { LoginUserAsync, CCLoginRequest, User} from "./CampusCrawlWebApiClient";
+import { LoginUserAsync, RegisterUserAsync, CCLoginRequest, User} from "./CampusCrawlWebApiClient";
 import { setUser } from '../userState';
 
 type FormFields = {
@@ -7,6 +7,29 @@ type FormFields = {
     lastName: string,
     password: string,
     email: string,
+    universityId: string
+};
+
+const registerSubmit = async (form: FormFields) => {
+    const userToRegister = {
+        firstName: form.firstName,
+        lastName: form.lastName,
+        password: form.password,
+        email: form.email,
+        universityId: form.universityId
+    }
+
+    console.log(`registering ${JSON.stringify(userToRegister)}`);
+    let registerdUser = await RegisterUserAsync( userToRegister as User);
+
+    if (registerdUser.hasErr)
+    {
+      alert(registerdUser.err);
+      return;
+    }
+
+    console.log(`registerd user: ${JSON.stringify(registerdUser.data)}`);
+      setUser(JSON.parse(JSON.stringify(registerdUser.data)));
 };
 
 const loginSubmit = async (form: FormFields) => {
@@ -31,12 +54,14 @@ const loginSubmit = async (form: FormFields) => {
   console.log(`valid login: ${JSON.stringify(userLoggedIn.data)}`);
   setUser(JSON.parse(JSON.stringify(userLoggedIn.data)));
 };
+
 const useForm = () => {
   const [form, setForm] = createStore<FormFields>({
     firstName: "",
     lastName: "",
     password: "",
     email: "",
+    universityId: ""
   });
 
   const clearField = (fieldName: string) => {
