@@ -6,16 +6,26 @@ import Login from './Login';
 import { user, setUser } from './userState';
 
 const App: Component = () => {
-    const [registerToggle, setRegisterToggle] = createSignal(false);
+    const [registerToggle, setRegisterToggle] = createSignal(true);
 
     return (
     <div class="grid justify-center items-center">
-        <Switch fallback={<Login />}>
-            <Match when={registerToggle()}>
+        <Switch fallback=
+                {
+                    <>
+                        <Login />
+                        <button class="object-none object-center" onClick={ () => setRegisterToggle(!registerToggle())}>
+                            Don't have an account?
+                        </button>
+                    </>
+                }>
+            <Match when={!registerToggle()}>
                 <Register />
+                <button class="object-none object-center" onClick={ () => setRegisterToggle(!registerToggle())}>
+                    Already have an account?
+                </button>
             </Match>
         </Switch>
-        <button class="object-none object-center bg-white hover:bg-xanthous text-chestnut py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={ () => setRegisterToggle(!registerToggle())}>Don't have an account?</button>
     </div>
     );
 };

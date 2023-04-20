@@ -27,7 +27,7 @@ interface Response
 {
     err: string,
     hasErr: boolean,
-    data: string
+    data?: string
 }
 
 export async function RegisterUserAsync(user: userInfo)
@@ -64,12 +64,11 @@ export async function RegisterUserAsync(user: userInfo)
 
 export async function LoginUserAsync(request: CCLoginRequest): Promise<Response>
 {
-    let ret : Response =
+    let ret: Response =
     {
-        err: "Missing Response",
-        hasErr: true,
-        data: ""
-    };
+        err: "",
+        hasErr: false
+    }
 
     try
     {
@@ -83,12 +82,16 @@ export async function LoginUserAsync(request: CCLoginRequest): Promise<Response>
                    body: JSON.stringify(request)
                });
 
-        ret = JSON.parse(await response.json());
+         ret = JSON.parse(await response.json());
         console.log(`received from login api ${ret}`);
-
     } catch(e)
     {
         console.error(e);
+        ret =
+        {
+            err: "Exception thrown",
+            hasErr: true,
+        }
     }
 
     return ret;
