@@ -2,6 +2,7 @@ import { For, createSignal, Component, createResource } from "solid-js";
 import { createStore } from "solid-js/store";
 import { userInfo, userCredentials, getUniversities,  RegisterUserAsync, LoginUserAsync, CCLoginResponse } from "./scripts/CampusCrawlWebApiClient";
 import { useForm } from "./scripts/useForm"
+import { user, setUser } from "./userState";
 
 const RsoForm : Component = () =>
 {
@@ -12,7 +13,7 @@ const RsoForm : Component = () =>
     const handleSubmit = (event: Event): void => {
         event.preventDefault();
 
-        createRsoSubmit(form);
+        createRsoSubmit(form, user().universityId);
     };
 
 return (

@@ -12,14 +12,13 @@ type FormFields = {
     rsoDescription: string
 };
 
-const createRsoSubmit = async (form: FormFields) => {
+const createRsoSubmit = async (form: FormFields, uniId: string) => {
     const rsoToCreate = {
         name: form.rsoName,
         description: form.rsoDescription,
-        universityId: user().universityId,
+        universityId: uniId,
         id: user().id,
         status: "inactive",
-        university: {}
     }
 
     console.log(`creating rso ${JSON.stringify(rsoToCreate)}`);
