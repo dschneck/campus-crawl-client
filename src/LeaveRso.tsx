@@ -6,14 +6,14 @@ import { user } from "./userState";
 
 const LeaveRso : Component = () =>
 {
-    const [rsos] = createResource(user().universityId as string, getRsos)
+    const [rsos] = createResource(user().universityId, getRsos)
 
-    const { form, updateFormField, registerSubmit} = useForm();
+    const { form, updateFormField, leaveRsoSubmit} = useForm();
 
     const handleSubmit = (event: Event): void => {
         event.preventDefault();
 
-        registerSubmit(form);
+        leaveRsoSubmit(form);
     };
 
 return (

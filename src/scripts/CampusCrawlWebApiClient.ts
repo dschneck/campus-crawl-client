@@ -84,6 +84,40 @@ export interface RSO
     university: {}
 }
 
+export async function JoinRso(uid: string, rsoId: string)
+{
+    let ret: Response =
+    {
+        err: "",
+        hasErr: false
+    }
+
+    try
+    {
+        const response = await fetch(`${webApiBaseUrl}/rsos/join/${rsoId}`,
+               {
+                   method: 'POST',
+                   headers: {
+                       'accept': 'text/plain',
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify(uid)
+               });
+
+         ret = await response.json();
+        console.log(`received from rsos/leave/ api ${JSON.stringify(ret)}`);
+    } catch(e)
+    {
+        console.error(e);
+        ret =
+        {
+            err: "Exception thrown",
+            hasErr: true,
+        }
+    }
+
+    return ret;
+}
 export async function LeaveRso(uid: string, rsoId: string)
 {
     let ret: Response =

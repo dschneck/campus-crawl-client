@@ -12,6 +12,9 @@ type FormFields = {
     rsoDescription: string
 };
 
+const leaveRsoSubmit = async (form: FormFields) => {
+    return;
+}
 const createRsoSubmit = async (form: FormFields, uniId: string) => {
     const rsoToCreate = {
         name: form.rsoName,
@@ -33,6 +36,7 @@ const createRsoSubmit = async (form: FormFields, uniId: string) => {
     console.log(`created rso: ${JSON.stringify(createdRso.data)}`);
       setUser(JSON.parse(JSON.stringify(createdRso.data)));
 };
+
 const registerSubmit = async (form: FormFields) => {
     const userToRegister = {
         firstName: form.firstName,
