@@ -2,10 +2,11 @@ import { For, createSignal, Component, createResource } from "solid-js";
 import { createStore } from "solid-js/store";
 import { userInfo, userCredentials, getRsos,  RegisterUserAsync, LoginUserAsync, CCLoginResponse } from "./scripts/CampusCrawlWebApiClient";
 import { useForm } from "./scripts/useForm"
+import { user } from "./userState";
 
 const LeaveRso : Component = () =>
 {
-    const [rsos] = createResource(getRsos);
+    const [rsos] = createResource(user().universityId as string, getRsos)
 
     const { form, updateFormField, registerSubmit} = useForm();
 

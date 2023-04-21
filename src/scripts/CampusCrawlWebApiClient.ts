@@ -30,13 +30,18 @@ interface Response
     data?: string
 }
 
-export async function getRsos()
+export async function getRsos(uid: string)
 {
     try
     {
         const response = await fetch(`${webApiBaseUrl}/rsos`,
                {
-                   method: 'GET',
+                   method: 'POST',
+                   headers: {
+                       'accept': 'text/plain',
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify(uid)
                });
 
         let result = await response.json();
