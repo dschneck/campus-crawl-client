@@ -54,6 +54,27 @@ export async function getRsos(uid: string)
         return null;
     }
 }
+
+export async function getRsosByUser(userId: string)
+{
+    try
+    {
+        const response = await fetch(`${webApiBaseUrl}/rsos/${userId}`,
+               {
+                   method: 'GET',
+               });
+
+        let result = await response.json();
+        let x = JSON.stringify(result);
+        console.log(`get rso by user ${x}`);
+
+        return result.data;
+    } catch(e)
+    {
+        return null;
+    }
+}
+
 export async function getUniversities()
 {
     try
@@ -84,7 +105,7 @@ export interface RSO
     university: {}
 }
 
-export async function JoinRso(uid: string, rsoId: string)
+export async function rsoAction(uid: string, rsoId: string, path: string)
 {
     let ret: Response =
     {
@@ -94,7 +115,7 @@ export async function JoinRso(uid: string, rsoId: string)
 
     try
     {
-        const response = await fetch(`${webApiBaseUrl}/rsos/join/${rsoId}`,
+        const response = await fetch(`${webApiBaseUrl}/rsos/${path}/${rsoId}`,
                {
                    method: 'POST',
                    headers: {

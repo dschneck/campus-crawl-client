@@ -1,6 +1,5 @@
-import { For, createSignal, Component, createResource } from "solid-js";
-import { createStore } from "solid-js/store";
-import { userInfo, userCredentials, getRsos,  RegisterUserAsync, LoginUserAsync, CCLoginResponse } from "./scripts/CampusCrawlWebApiClient";
+import { For, Component, createResource } from "solid-js";
+import { getRsos  } from "./scripts/CampusCrawlWebApiClient";
 import { useForm } from "./scripts/useForm"
 import { user} from "./userState";
 
@@ -8,12 +7,12 @@ const JoinRso : Component = () =>
 {
     const [rsos] = createResource(user().universityId as string, getRsos)
 
-    const { form, updateFormField, registerSubmit} = useForm();
+    const { form, updateFormField, rsoSubmit} = useForm();
 
     const handleSubmit = (event: Event): void => {
         event.preventDefault();
 
-        joinRsoSubmit(form);
+        rsoSubmit(form, "join");
     };
 
 return (
@@ -27,7 +26,7 @@ return (
       </label>
       <div class="relative">
         <select
-            onChange={updateFormField("universityId")}
+            onChange={updateFormField("selectedRso")}
             class="block appearance-none w-full  border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-university">
           <For each={rsos()}>{(rso) =>

@@ -1,5 +1,5 @@
 import { createStore } from "solid-js/store";
-import { LoginUserAsync, RegisterUserAsync,CreateRsoAsync, CCLoginRequest, User, RSO} from "./CampusCrawlWebApiClient";
+import { LoginUserAsync, RegisterUserAsync,CreateRsoAsync, CCLoginRequest, User, RSO, rsoAction} from "./CampusCrawlWebApiClient";
 import { user, setUser } from '../userState';
 
 type FormFields = {
@@ -9,12 +9,25 @@ type FormFields = {
     email: string,
     universityId: string,
     rsoName: string,
-    rsoDescription: string
+    rsoDescription: string,
+    selectedRso: string
 };
 
-const leaveRsoSubmit = async (form: FormFields) => {
-    return;
+const rsoSubmit = async (form: FormFields, action: string) => {
+    console.log(`creating rso ${JSON.stringify(rsoAction)}`);
+    let result  = await rsoAction(user().id, form.selectedRso, action);
+
+    if (result .hasErr)
+    {
+      alert(result .err);
+      return;
+    }
+
+    console.log(`rso action: ${JSON.stringify(result .data)}`);
+      setUser(JSON.parse(JSON.stringify(result .data)));
+
 }
+
 const createRsoSubmit = async (form: FormFields, uniId: string) => {
     const rsoToCreate = {
         name: form.rsoName,
@@ -91,7 +104,8 @@ const useForm = () => {
     email: "",
     universityId: "",
     rsoName: "",
-    rsoDescription: ""
+    rsoDescription: "",
+    selectedRso: ""
   });
 
   const clearField = (fieldName: string) => {
@@ -107,7 +121,7 @@ const useForm = () => {
       });
   };
 
-  return { form, loginSubmit, registerSubmit, createRsoSubmit,  updateFormField, clearField };
+  return { form, rsoSubmit, loginSubmit, registerSubmit, createRsoSubmit,  updateFormField, clearField };
 };
 
 export { useForm };

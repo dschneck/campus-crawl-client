@@ -1,19 +1,18 @@
-import { For, createSignal, Component, createResource } from "solid-js";
-import { createStore } from "solid-js/store";
-import { userInfo, userCredentials, getRsos,  RegisterUserAsync, LoginUserAsync, CCLoginResponse } from "./scripts/CampusCrawlWebApiClient";
+import { For, Component, createResource } from "solid-js";
+import { getRsosByUser } from "./scripts/CampusCrawlWebApiClient";
 import { useForm } from "./scripts/useForm"
 import { user } from "./userState";
 
 const LeaveRso : Component = () =>
 {
-    const [rsos] = createResource(user().universityId, getRsos)
+    const [rsos] = createResource(user().id, getRsosByUser)
 
-    const { form, updateFormField, leaveRsoSubmit} = useForm();
+    const { form, updateFormField, rsoSubmit} = useForm();
 
     const handleSubmit = (event: Event): void => {
         event.preventDefault();
 
-        leaveRsoSubmit(form);
+        rsoSubmit(form, "leave");
     };
 
 return (
@@ -27,7 +26,7 @@ return (
       </label>
       <div class="relative">
         <select
-            onChange={updateFormField("universityId")}
+            onChange={updateFormField("selectedRso")}
             class="block appearance-none w-full  border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-university">
           <For each={rsos()}>{(rso) =>
