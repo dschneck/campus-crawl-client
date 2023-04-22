@@ -84,7 +84,7 @@ export async function getEvents(eventArgs: eventArgs)
 
         let result = await response.json();
         let x = JSON.stringify(result);
-        console.log(`received from get events api ${x}`);
+        console.log(`received from get events ${eventArgs.type} ${x}`);
 
         return result.data;
     } catch(e)
