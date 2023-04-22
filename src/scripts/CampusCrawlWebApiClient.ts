@@ -13,6 +13,24 @@ export interface userInfo
     universityId: string
 };
 
+export interface Event
+{
+    id: string,
+    adminId: string,
+    locationId: string,
+    name: string,
+    description: string,
+    category: string,
+    startTime: string,
+    endTime: string
+}
+
+export interface eventArgs
+{
+    id: string,
+    type: string
+}
+
 export interface User extends userCredentials, userInfo
 {
     id: string
@@ -55,6 +73,25 @@ export async function getRsos(uid: string)
     }
 }
 
+export async function getEvents(eventArgs: eventArgs)
+{
+    try
+    {
+        const response = await fetch(`${webApiBaseUrl}/events/${eventArgs.type}/${eventArgs.id}`,
+               {
+                   method: 'GET',
+               });
+
+        let result = await response.json();
+        let x = JSON.stringify(result);
+        console.log(`received from get events api ${x}`);
+
+        return result.data;
+    } catch(e)
+    {
+        return null;
+    }
+}
 export async function getRsosByUser(userId: string)
 {
     try
