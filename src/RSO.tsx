@@ -5,11 +5,15 @@ import JoinRso from "./JoinRso";
 
 const RSO : Component = () => {
     return (
-        <div class="bg-white p-10">
-            <h1 class="text-xl mx-auto p-2 border-b-4 text-center">RSO</h1>
-        <RsoForm />
-        <JoinRso />
-        <LeaveRso />
+        <div class="bg-white mx-auto p-12">
+            <h1 class=" text-chestnut text-xl mx-auto p-4  text-center">RSO</h1>
+        <div class="flex">
+            <RsoForm />
+            <div>
+                <JoinRso />
+                <LeaveRso />
+            </div>
+            </div>
         </div>
     );
 }

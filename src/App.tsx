@@ -36,7 +36,7 @@ const App: Component = () => {
         }>
         <Match when={user().id != 'empty'}>
             <div class="mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 grid grid-cols-1 divide-y-4 divide-slate-400">
-                <h1>{`Hello there, ${user().firstName}`}</h1>
+                <h1 class="text-chestnut">{`Hello there, ${user().firstName}`}</h1>
                 <Events />
                 <RSO />
                 <Logout />

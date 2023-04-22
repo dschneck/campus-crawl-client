@@ -14,7 +14,7 @@ const Events : Component = () =>
 
     return (
         <div class="bg-white p-10">
-            <h1 class="text-xl mx-auto p-2 border-b-4 text-center">Events</h1>
+            <h1 class="text-chestnut text-xl mx-auto p-2 text-center">Events</h1>
             <ul class="overflow-auto list-none divide-y divide-white md:divide-y-8">
                 <For
                 each={publicEvents()}>
