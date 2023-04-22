@@ -211,7 +211,7 @@ export async function LeaveRso(uid: string, rsoId: string)
     return ret;
 }
 
-export async function CreateRsoAsync(rso: RSO)
+export async function CreateRsoAsync(rso: RSO, userId: string)
 {
     let ret: Response =
     {
@@ -221,7 +221,7 @@ export async function CreateRsoAsync(rso: RSO)
 
     try
     {
-        const response = await fetch(`${webApiBaseUrl}/rsos/create`,
+        const response = await fetch(`${webApiBaseUrl}/rsos/create/${userId}`,
                {
                    method: 'POST',
                    headers: {

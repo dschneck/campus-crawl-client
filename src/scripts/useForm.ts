@@ -24,8 +24,6 @@ const rsoSubmit = async (form: FormFields, action: string) => {
     }
 
     console.log(`rso action: ${JSON.stringify(result .data)}`);
-      setUser(JSON.parse(JSON.stringify(result .data)));
-
 }
 
 const createRsoSubmit = async (form: FormFields, uniId: string) => {
@@ -33,12 +31,12 @@ const createRsoSubmit = async (form: FormFields, uniId: string) => {
         name: form.rsoName,
         description: form.rsoDescription,
         universityId: uniId,
-        id: user().id,
+        id: "",
         status: "inactive",
     }
 
     console.log(`creating rso ${JSON.stringify(rsoToCreate)}`);
-    let createdRso = await CreateRsoAsync( rsoToCreate as RSO);
+    let createdRso = await CreateRsoAsync( rsoToCreate as RSO, user().id);
 
     if (createdRso.hasErr)
     {
@@ -47,7 +45,6 @@ const createRsoSubmit = async (form: FormFields, uniId: string) => {
     }
 
     console.log(`created rso: ${JSON.stringify(createdRso.data)}`);
-      setUser(JSON.parse(JSON.stringify(createdRso.data)));
 };
 
 const registerSubmit = async (form: FormFields) => {
